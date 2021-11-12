@@ -1,6 +1,6 @@
 const kategoriModel = require('../model/Kategori');
 const { requestResponse } = require('../config/message')
-const auth = require("../middleware/auth")
+const auth = require('../middleware/auth')
 const router = require('express').Router()
 
 router.post('/input', auth, async (req, res) => {
@@ -17,9 +17,9 @@ router.post('/input', auth, async (req, res) => {
       return res.status(409).send('Kategori Telah Ada');
     } else {
       kategoriModel.create(data)
-      .then(() => {
-        res.send(requestResponse.sukses('Berhasil Menambahkan Kategori'));
-      })
+        .then(() => {
+          res.send(requestResponse.sukses('Berhasil Menambahkan Kategori'));
+        })
     }
   } catch (err) {
     console.log(err)
@@ -29,9 +29,9 @@ router.post('/input', auth, async (req, res) => {
 router.get('/dataKategori', auth, async (req, res) => {
   try {
     kategoriModel.find({})
-    .then((kategori) => {
-      res.send(requestResponse.sukseswithdata('Berhasil', kategori))
-    })
+      .then((kategori) => {
+        res.send(requestResponse.sukseswithdata('Berhasil', kategori))
+      })
   } catch (err) {
     console.log(err)
   }
@@ -46,11 +46,11 @@ router.put('/edit/:id', auth, async (req, res) => {
     kategoriModel.updateOne({
       id: id
     }, data)
-    .then(() => {
-      res.send(requestResponse.sukses('Berhasil Merubah Kategori'));
-    }).catch((err) => {
-      console.log(err)
-    })
+      .then(() => {
+        res.send(requestResponse.sukses('Berhasil Merubah Kategori'));
+      }).catch((err) => {
+        console.log(err)
+      })
   } catch (err) {
     console.log(err)
   }

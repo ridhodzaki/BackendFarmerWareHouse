@@ -28,7 +28,6 @@ const upload = multer({
 })
 
 const cekNull = (fileUpload) => {
-  // console.log(fileUpload)
   if (fileUpload === null || fileUpload === undefined) {
     return null
   } else {
@@ -40,23 +39,16 @@ const cekNull = (fileUpload) => {
     array.splice(0, 1)
     return array
   }
-  // if (fileUpload === undefined || fileUpload === null) {
-  //   return null
-  // } else {
-  //   return fileUpload[0].filename
-  // }
 }
 
 const deleteImage = (image) => {
   console.log(image)
   if (image !== undefined) {
     var i = 0;
-    for (i; i < image.length; i++){
+    for (i; i < image.length; i++) {
       fs.unlinkSync(`./image/${image[i]}`)
-      // console.log(image[i])
     }
   }
-  // fs.unlinkSync(`../statics/${image}`)
 }
 
-module.exports = {multer, upload, cekNull, deleteImage }
+module.exports = { multer, upload, cekNull, deleteImage }

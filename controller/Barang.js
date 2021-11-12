@@ -1,5 +1,5 @@
 const barangModel = require('../model/Barang')
-const { requestResponse } = require('../config/message')
+const { requestResponse } = require('../config/Message')
 const { deleteImage } = require('../config/uploadConfig')
 
 exports.inputBarang = (data) =>
@@ -11,11 +11,11 @@ exports.inputBarang = (data) =>
         reject(requestResponse.gagal('Barang Telah Terdaftar'))
       } else {
         barangModel.create(data)
-        .then(() => resolve(requestResponse.sukses('Berhasil Input Barang')))
-        .catch((err) => {
-          console.log(err)
-          reject(requestResponse.gagal('Gagal Input Barang'))
-        })
+          .then(() => resolve(requestResponse.sukses('Berhasil Input Barang')))
+          .catch((err) => {
+            console.log(err)
+            reject(requestResponse.gagal('Gagal Input Barang'))
+          })
       }
     }).catch((err) => {
       console.log(err)
@@ -26,16 +26,16 @@ exports.inputBarang = (data) =>
 exports.dataBarang = () =>
   new Promise((resolve, reject) => {
     barangModel.find({})
-    .then((barang) => {
-      resolve(requestResponse.sukseswithdata('Berhasil Mendapatkan Barang', barang))
-    })
-    .catch((err) => {
-      console.log(err)
-      reject(requestResponse.serverError)
-    })
+      .then((barang) => {
+        resolve(requestResponse.sukseswithdata('Berhasil Mendapatkan Barang', barang))
+      })
+      .catch((err) => {
+        console.log(err)
+        reject(requestResponse.serverError)
+      })
   })
 
-exports.detailBarang = (id) => 
+exports.detailBarang = (id) =>
   new Promise((resolve, reject) => {
     barangModel.findOne({
       _id: id

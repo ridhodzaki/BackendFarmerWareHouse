@@ -1,7 +1,7 @@
 const userModel = require('../model/User')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { requestResponse } = require('../config/message')
+const { requestResponse } = require('../config/Message')
 
 exports.register = (data) =>
   new Promise((resolve, reject) => {
@@ -23,17 +23,17 @@ exports.register = (data) =>
           console.log(token)
           data.token = token
           userModel.create(data)
-          .then(() => resolve(requestResponse.sukses('Berhasil Register User')))
-          .catch((err) => {
-            console.log(err)
-            reject(requestResponse.gagal('Gagal Register User'))
-          })
+            .then(() => resolve(requestResponse.sukses('Berhasil Register User')))
+            .catch((err) => {
+              console.log(err)
+              reject(requestResponse.gagal('Gagal Register User'))
+            })
         })
       }
     }).catch(() => reject(requestResponse.serverError))
   })
 
-  exports.login = (data) =>
+exports.login = (data) =>
   new Promise((resolve, reject) => {
     userModel.findOne({
       email: data.email
@@ -44,21 +44,21 @@ exports.register = (data) =>
             { user_id: user._id, email: user.email },
             process.env.TOKEN_KEY,
             {
-              expiresIn: "5h",
+              expiresIn: "10h",
             }
           )
           user.token = token
           userModel.updateOne({
             email: user.email
           }, user)
-          .then(() => {
-            console.log(user)
-            resolve(requestResponse.sukseswithdata('Berhasil Login', user))
-          })
-          .catch((err) => {
-            console.log(err)
-            reject(requestResponse.serverError)
-          })
+            .then(() => {
+              console.log(user)
+              resolve(requestResponse.sukseswithdata('Berhasil Login', user))
+            })
+            .catch((err) => {
+              console.log(err)
+              reject(requestResponse.serverError)
+            })
         } else {
           reject(requestResponse.gagal('Password Salah'))
         }
