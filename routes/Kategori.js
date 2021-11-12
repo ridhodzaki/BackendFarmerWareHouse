@@ -26,7 +26,7 @@ router.post('/input', auth, async (req, res) => {
   }
 })
 
-router.get('/dataKategori', auth, async (req, res) => {
+router.get('/dataKategori', async (req, res) => {
   try {
     kategoriModel.find({})
       .then((kategori) => {

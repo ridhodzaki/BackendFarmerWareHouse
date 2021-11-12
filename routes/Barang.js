@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const barangController = require('../controller/Barang')
-const auth = require('../ middleware/auth')
+const auth = require('../middleware/auth')
 const uploadSetting = require('../config/uploadConfig')
 const fields = uploadSetting.upload.fields([
   {
