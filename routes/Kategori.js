@@ -1,5 +1,5 @@
 const kategoriModel = require('../model/Kategori');
-const { requestResponse } = require('../config/message')
+const { requestResponse } = require('../config/Message')
 const auth = require('../middleware/auth')
 const router = require('express').Router()
 
